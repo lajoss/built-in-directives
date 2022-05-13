@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Item } from './item';
+import { Hero } from './hero';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,7 @@ export class AppComponent implements OnInit {
   canSave = true;
   isSpecial = true;
   isUnchanged = true;
+  showSad = false;
 
   isActive = true;
   nullCustomer: string | null = null;
@@ -31,6 +33,14 @@ export class AppComponent implements OnInit {
   currentClasses: Record<string, boolean> = {};
 
   currentStyles: Record<string, string> = {};
+  hero: Hero = { name: 'Idiot', emotion: 'Happy' };
+
+  heroes: Hero[] = [
+    new Hero('Idiot','Happy'),
+    new Hero('Stupid', 'Fighting'),
+    new Hero('Inteligent', 'doing business'),
+    new Hero('Super', 'sad'),
+  ];
 
   ngOnInit() {
     this.resetItems();

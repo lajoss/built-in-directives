@@ -23,7 +23,7 @@
 
   <p>
     <label for="example-uppercase">(ngModelChange)="setUppercaseName($event)"
-      <input [ngModel]="currentItem.name" (ngModelChange)="setUppercaseName($event)" id="example-uppercase">
+      <input [ngModel]="currentItem.name" id="example-uppercase">
     </label>
   </p>
 </fieldset>
@@ -88,7 +88,7 @@
 <h3 id="ngIf">NgIf Binding</h3>
 <div>
   <p>If isActive is true, app-item-detail will render: </p>
-  <app-item-detail *ngIf="isActive" [item]="item"></app-item-detail>
+  <app-item-detail *ngIf="isActive" [item]="currentItem"></app-item-detail>
 
   <button type="button" (click)="isActiveToggle()">Toggle app-item-detail</button>
 </div>
@@ -186,6 +186,18 @@
 <div class="box">
   <div *ngFor="let item of items, trackBy: trackById">({{item.id}}) {{item.name}}</div>
 </div>
+
+<div>
+Pick your favorite hero
+(<label><input type="checkbox" unchecked (change)="showSad = !showSad">show sad</label>)
+</div>
+<select [(ngModel)]="hero">
+<ng-container *ngFor="let h of heroes">
+  <ng-container *ngIf="showSad || h.emotion !== 'sad'">
+    <option [ngValue]="h">{{h.name}} ({{h.emotion}})</option>
+  </ng-container>
+</ng-container>
+</select>
 
 <hr><h2>NgSwitch Binding</h2>
 
